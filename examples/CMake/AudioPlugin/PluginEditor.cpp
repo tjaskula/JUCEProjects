@@ -13,6 +13,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 {
+    processorRef.shouldPlaySound = false;
 }
 
 //==============================================================================
@@ -30,4 +31,14 @@ void AudioPluginAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+}
+
+void AudioPluginAudioProcessorEditor::mouseUp(const juce::MouseEvent &e)
+{
+    processorRef.shouldPlaySound = !processorRef.shouldPlaySound;
+}
+
+void AudioPluginAudioProcessorEditor::mouseDown(const juce::MouseEvent &e)
+{
+    processorRef.shouldPlaySound = true;
 }
