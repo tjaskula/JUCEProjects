@@ -40,5 +40,5 @@ void AudioPluginAudioProcessorEditor::mouseUp(const juce::MouseEvent &e)
 
 void AudioPluginAudioProcessorEditor::mouseDown(const juce::MouseEvent &e)
 {
-    processorRef.shouldPlaySound = true;
+    //processorRef.shouldPlaySound = true;
 }
