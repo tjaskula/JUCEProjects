@@ -50,7 +50,7 @@ juce_add_gui_app(PlayingSoundFilesTutorial
 # include all your JUCE module headers; if you're happy to include module headers directly, you
 # probably don't need to call this.
 
-# juce_generate_juce_header(GuiAppExample)
+juce_generate_juce_header(PlayingSoundFilesTutorial)
 
 # `target_sources` adds source files to a target. We pass the target that needs the sources as the
 # first argument, then a visibility parameter for the sources which should normally be PRIVATE.
@@ -60,7 +60,8 @@ juce_add_gui_app(PlayingSoundFilesTutorial
 target_sources(PlayingSoundFilesTutorial
     PRIVATE
         Main.cpp
-        MainComponent.cpp)
+        MainComponent.cpp
+        MainComponent.h)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use
@@ -96,6 +97,16 @@ target_link_libraries(PlayingSoundFilesTutorial
     PRIVATE
         # GuiAppData            # If we'd created a binary data target, we'd link to it here
         juce::juce_gui_extra
+        juce::juce_audio_basics
+        juce::juce_audio_devices
+        juce::juce_audio_formats
+        juce::juce_audio_processors
+        juce::juce_audio_utils
+        juce::juce_core
+        juce::juce_data_structures
+        juce::juce_events
+        juce::juce_graphics
+        juce::juce_gui_basics
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

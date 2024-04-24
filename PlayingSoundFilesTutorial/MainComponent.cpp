@@ -23,3 +23,20 @@ void MainComponent::resized()
     // If you add any child components, this is where you should
     // update their positions.
 }
+
+void MainComponent::changeListenerCallback (juce::ChangeBroadcaster* source)
+{
+
+}
+
+void MainComponent::prepareToPlay (int samplesPerBlockExpected, double sampleRate)
+{
+}
+
+void MainComponent::releaseResources()
+{
+}
+
+void MainComponent::getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill)
+{
+}
