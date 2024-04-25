@@ -12,7 +12,8 @@
     your controls and content.
 */
 class MainComponent final : public juce::AudioAppComponent,
-                            public juce::ChangeListener
+                            public juce::ChangeListener,
+                            public juce::Timer
 {
 public:
     //==============================================================================
@@ -26,11 +27,14 @@ public:
     void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
     void releaseResources() override;
     void getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill) override;
+    void timerCallback() override;
 
     //==============================================================================
+    void updateLoopState (bool shouldLoop);
     void openButtonClicked();
     void playButtonClicked();
     void stopButtonClicked();
+    void loopButtonChanged();
 
 private:
     //==============================================================================
@@ -51,6 +55,8 @@ private:
     juce::TextButton openButton;
     juce::TextButton playButton;
     juce::TextButton stopButton;
+    juce::ToggleButton loopingToggle;
+    juce::Label currentPositionLabel;
 
     std::unique_ptr<juce::FileChooser> chooser;
 
