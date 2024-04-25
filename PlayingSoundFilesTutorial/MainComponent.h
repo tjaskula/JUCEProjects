@@ -17,9 +17,9 @@ class MainComponent final : public juce::AudioAppComponent,
 public:
     //==============================================================================
     MainComponent();
+    ~MainComponent() override;
 
     //==============================================================================
-    void paint (juce::Graphics&) override;
     void resized() override;
 
     void changeListenerCallback (juce::ChangeBroadcaster* source) override;
@@ -27,9 +27,39 @@ public:
     void releaseResources() override;
     void getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill) override;
 
+    //==============================================================================
+    void openButtonClicked();
+    void playButtonClicked();
+    void stopButtonClicked();
+
 private:
     //==============================================================================
     // Your private member variables go here...
+    enum TransportState
+    {
+        Stopped,
+        Starting,
+        Playing,
+        Pausing,
+        Paused,
+        Stopping
+    };
+
+    void changeState (TransportState newState);
+
+    //==========================================================================
+    juce::TextButton openButton;
+    juce::TextButton playButton;
+    juce::TextButton stopButton;
+
+    std::unique_ptr<juce::FileChooser> chooser;
+
+    //==========================================================================
+    juce::AudioFormatManager formatManager;
+    std::unique_ptr<juce::AudioFormatReaderSource> readerSource;
+    juce::AudioTransportSource transportSource;
+
+    TransportState state;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
