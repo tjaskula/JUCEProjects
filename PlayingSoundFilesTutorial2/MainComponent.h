@@ -11,9 +11,7 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainComponent final : public juce::AudioAppComponent,
-                            public juce::ChangeListener,
-                            public juce::Timer
+class MainComponent final : public juce::AudioAppComponent
 {
 public:
     //==============================================================================
@@ -23,49 +21,18 @@ public:
     //==============================================================================
     void resized() override;
 
-    void changeListenerCallback (juce::ChangeBroadcaster* source) override;
     void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
     void releaseResources() override;
     void getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill) override;
-    void timerCallback() override;
-
-    //==============================================================================
-    void updateLoopState (bool shouldLoop);
-    void openButtonClicked();
-    void playButtonClicked();
-    void stopButtonClicked();
-    void loopButtonChanged();
 
 private:
     //==============================================================================
     // Your private member variables go here...
-    enum TransportState
-    {
-        Stopped,
-        Starting,
-        Playing,
-        Pausing,
-        Paused,
-        Stopping
-    };
-
-    void changeState (TransportState newState);
 
     //==========================================================================
-    juce::TextButton openButton;
-    juce::TextButton playButton;
-    juce::TextButton stopButton;
-    juce::ToggleButton loopingToggle;
-    juce::Label currentPositionLabel;
-
-    std::unique_ptr<juce::FileChooser> chooser;
-
-    //==========================================================================
-    juce::AudioFormatManager formatManager;
-    std::unique_ptr<juce::AudioFormatReaderSource> readerSource;
-    juce::AudioTransportSource transportSource;
-
-    TransportState state;
+    juce::Random random;
+    juce::Slider levelSlider;
+    juce::Label levelLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
