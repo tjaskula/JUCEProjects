@@ -18,6 +18,7 @@ public:
     MainComponent();
 
     //==============================================================================
+    void paint (juce::Graphics& g) override;
     void resized() override;
 
 private:
@@ -25,8 +26,12 @@ private:
     // Your private member variables go here...
     void runExample();
     void logMessage (const juce::String& m);
+    juce::Colour colourAtQuantile (float quantile) const;
+    static float sumFloatArray (const juce::Array<float>& values);
 
     juce::TextEditor consoleBox;
+    juce::Array<juce::Colour> colours;
+    juce::Array<float> weights;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
