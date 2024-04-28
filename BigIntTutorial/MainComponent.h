@@ -18,12 +18,15 @@ public:
     MainComponent();
 
     //==============================================================================
-    void paint (juce::Graphics&) override;
     void resized() override;
 
 private:
     //==============================================================================
     // Your private member variables go here...
+    void runExample();
+    void logMessage (const juce::String& m);
+
+    juce::TextEditor consoleBox;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
