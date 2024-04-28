@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03F41E828ECF23B9A25FB1E3 /* Security.framework */ = {isa = PBXBuildFile; fileRef = 1EE663BBA4A6225812516592; };
+		1F4272E2B84BBBFF425EF10D /* IOKit.framework */ = {isa = PBXBuildFile; fileRef = FB3AA0FD762EFB2D0205779B; };
+		33B22A8E49FD97E2EBBE188B /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = 2C0852E2E8A46330B146AC76; };
+		390BE6B85340E28FF696773A /* Cocoa.framework */ = {isa = PBXBuildFile; fileRef = 2FA0AB5D347CD16F456033E3; };
+		3B6E281E9443FE6D524981CD /* include_juce_data_structures.mm */ = {isa = PBXBuildFile; fileRef = 47FA2FFC5EA5002B74AFF698; };
+		590D383F771504BF722BB570 /* MetalKit.framework */ = {isa = PBXBuildFile; fileRef = EAF4B9D0CCE2819FAE26309D; settings = { ATTRIBUTES = (Weak, ); }; };
+		6E8A5D3E6DCF258547105687 /* QuartzCore.framework */ = {isa = PBXBuildFile; fileRef = 50A8AC135254151D51C6261D; };
+		80D840349192682EBC2E1599 /* Metal.framework */ = {isa = PBXBuildFile; fileRef = 405BA98465B89FF8ABF604C3; settings = { ATTRIBUTES = (Weak, ); }; };
+		AB8CC3ACBC9909BE08AA931E /* include_juce_gui_basics.mm */ = {isa = PBXBuildFile; fileRef = 8F5957F511714C5E11949D4E; };
+		AEA3433B13F948C4F13656C6 /* Main.cpp */ = {isa = PBXBuildFile; fileRef = 20E700A7DF87F2117F6DCD17; };
+		C0BE3EF96F0BAC6E9E76A37C /* include_juce_events.mm */ = {isa = PBXBuildFile; fileRef = 01CCF6BA1E6C133D4D5B1BC9; };
+		D8AE12C9A098EB5F62156F97 /* include_juce_core.mm */ = {isa = PBXBuildFile; fileRef = F3C6D010FF20C9592F0F1FFA; };
+		D90EC446BB18A069156EB002 /* include_juce_graphics.mm */ = {isa = PBXBuildFile; fileRef = 4E6847B9CF1988A133D5A962; };
+		DAD578E62472ED44ED1D022B /* App */ = {isa = PBXBuildFile; fileRef = 32512058AE3FDAE599E09D2E; };
+		FBAC54B64644FB835E113816 /* Foundation.framework */ = {isa = PBXBuildFile; fileRef = FAE96CF6848B3C5DCB64DAE9; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		01CCF6BA1E6C133D4D5B1BC9 /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
+		0C9EA94F98A221C01C590F88 /* juce_gui_basics */ /* juce_gui_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_basics; path = "~/JUCE/modules/juce_gui_basics"; sourceTree = "<absolute>"; };
+		1EE663BBA4A6225812516592 /* Security.framework */ /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		20E700A7DF87F2117F6DCD17 /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
+		2C0852E2E8A46330B146AC76 /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
+		2FA0AB5D347CD16F456033E3 /* Cocoa.framework */ /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		32512058AE3FDAE599E09D2E /* App */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AndroidScreenSizesTutorialSimpleResize.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		405BA98465B89FF8ABF604C3 /* Metal.framework */ /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		47FA2FFC5EA5002B74AFF698 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
+		4E6847B9CF1988A133D5A962 /* include_juce_graphics.mm */ /* include_juce_graphics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_graphics.mm; path = ../../JuceLibraryCode/include_juce_graphics.mm; sourceTree = SOURCE_ROOT; };
+		50A8AC135254151D51C6261D /* QuartzCore.framework */ /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6BAA3B0B96B3791D45F2150D /* juce_graphics */ /* juce_graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_graphics; path = "~/JUCE/modules/juce_graphics"; sourceTree = "<absolute>"; };
+		89A8422977D5923912276BCE /* juce_core */ /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = "~/JUCE/modules/juce_core"; sourceTree = "<absolute>"; };
+		8F5957F511714C5E11949D4E /* include_juce_gui_basics.mm */ /* include_juce_gui_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_basics.mm; path = ../../JuceLibraryCode/include_juce_gui_basics.mm; sourceTree = SOURCE_ROOT; };
+		AB24865E9B56A12470869079 /* Info-App.plist */ /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
+		C900F020D38A9FAFAECBBC79 /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
+		DDE99CBD6629BDE7B682FEE7 /* AndroidScreenSizesTutorialSimpleResize.h */ /* AndroidScreenSizesTutorialSimpleResize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AndroidScreenSizesTutorialSimpleResize.h; path = ../../Source/AndroidScreenSizesTutorialSimpleResize.h; sourceTree = SOURCE_ROOT; };
+		E47061BA6BA84346D4EA3576 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
+		EAF4B9D0CCE2819FAE26309D /* MetalKit.framework */ /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		F11715F3855B6C361F874028 /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
+		F3C6D010FF20C9592F0F1FFA /* include_juce_core.mm */ /* include_juce_core.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_core.mm; path = ../../JuceLibraryCode/include_juce_core.mm; sourceTree = SOURCE_ROOT; };
+		FAE96CF6848B3C5DCB64DAE9 /* Foundation.framework */ /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FB3AA0FD762EFB2D0205779B /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6802A89C5030962DE3AFA054 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				390BE6B85340E28FF696773A,
+				FBAC54B64644FB835E113816,
+				1F4272E2B84BBBFF425EF10D,
+				6E8A5D3E6DCF258547105687,
+				03F41E828ECF23B9A25FB1E3,
+				80D840349192682EBC2E1599,
+				590D383F771504BF722BB570,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E14B176BA84C95DB9D6393D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FA0AB5D347CD16F456033E3,
+				FAE96CF6848B3C5DCB64DAE9,
+				FB3AA0FD762EFB2D0205779B,
+				50A8AC135254151D51C6261D,
+				1EE663BBA4A6225812516592,
+				405BA98465B89FF8ABF604C3,
+				EAF4B9D0CCE2819FAE26309D,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21653E9209FFC81F5E4F4320 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AB24865E9B56A12470869079,
+				2C0852E2E8A46330B146AC76,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		45BFDC05DAA312412511BF04 /* JUCE Modules */ = {
+			isa = PBXGroup;
+			children = (
+				89A8422977D5923912276BCE,
+				F11715F3855B6C361F874028,
+				E47061BA6BA84346D4EA3576,
+				6BAA3B0B96B3791D45F2150D,
+				0C9EA94F98A221C01C590F88,
+			);
+			name = "JUCE Modules";
+			sourceTree = "<group>";
+		};
+		5464287E1D68FF9070702C42 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				BA92F82C1AA84732E374A8CD,
+				45BFDC05DAA312412511BF04,
+				5C229604469DC7AE99A0AFAB,
+				21653E9209FFC81F5E4F4320,
+				1E14B176BA84C95DB9D6393D,
+				C971663F17228FE8B9272095,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		5C229604469DC7AE99A0AFAB /* JUCE Library Code */ = {
+			isa = PBXGroup;
+			children = (
+				F3C6D010FF20C9592F0F1FFA,
+				47FA2FFC5EA5002B74AFF698,
+				01CCF6BA1E6C133D4D5B1BC9,
+				4E6847B9CF1988A133D5A962,
+				8F5957F511714C5E11949D4E,
+				C900F020D38A9FAFAECBBC79,
+			);
+			name = "JUCE Library Code";
+			sourceTree = "<group>";
+		};
+		62E0226D2CA3C4804D6003C2 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				20E700A7DF87F2117F6DCD17,
+				DDE99CBD6629BDE7B682FEE7,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		BA92F82C1AA84732E374A8CD /* AndroidScreenSizesTutorialSimpleResize */ = {
+			isa = PBXGroup;
+			children = (
+				62E0226D2CA3C4804D6003C2,
+			);
+			name = AndroidScreenSizesTutorialSimpleResize;
+			sourceTree = "<group>";
+		};
+		C971663F17228FE8B9272095 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32512058AE3FDAE599E09D2E,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D50E3DFF6783D5796B75346D /* AndroidScreenSizesTutorialSimpleResize - App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4B98F153AE5B9E32D272214;
+			buildPhases = (
+				71539B6E473B05714D179C9F,
+				31991B04E84C347A416B98BC,
+				6802A89C5030962DE3AFA054,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AndroidScreenSizesTutorialSimpleResize - App";
+			productName = AndroidScreenSizesTutorialSimpleResize;
+			productReference = 32512058AE3FDAE599E09D2E;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27CB41250B00DEAE047526BF = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1340;
+				ORGANIZATIONNAME = "JUCE";
+				TargetAttributes = {
+					D50E3DFF6783D5796B75346D = {
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.HardenedRuntime = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = C7037CDBDFF306D50C473FAB;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5464287E1D68FF9070702C42;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D50E3DFF6783D5796B75346D,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71539B6E473B05714D179C9F = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33B22A8E49FD97E2EBBE188B,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		31991B04E84C347A416B98BC = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEA3433B13F948C4F13656C6,
+				D8AE12C9A098EB5F62156F97,
+				3B6E281E9443FE6D524981CD,
+				C0BE3EF96F0BAC6E9E76A37C,
+				D90EC446BB18A069156EB002,
+				AB8CC3ACBC9909BE08AA931E,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		47A95D52E4D35DDE7CFAB175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CODE_SIGN_FLAGS = --timestamp;
+				PRODUCT_NAME = "AndroidScreenSizesTutorialSimpleResize";
+				SDKROOT = macosx;
+				WARNING_CFLAGS = "-Wreorder";
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		5D073168B81770CF7976AB3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CODE_SIGN_FLAGS = --timestamp;
+				PRODUCT_NAME = "AndroidScreenSizesTutorialSimpleResize";
+				SDKROOT = macosx;
+				WARNING_CFLAGS = "-Wreorder";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8E221821FA717058625DEDAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
+				DEAD_CODE_STRIPPING = YES;
+				EXCLUDED_ARCHS = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_NDEBUG=1",
+					"NDEBUG=1",
+					"JUCE_DISPLAY_SPLASH_SCREEN=0",
+					"JUCE_USE_DARK_SPLASH_SCREEN=1",
+					"JUCE_PROJUCER_VERSION=0x7000c",
+					"JUCE_MODULE_AVAILABLE_juce_core=1",
+					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
+					"JUCE_MODULE_AVAILABLE_juce_events=1",
+					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
+					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
+					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
+					"JUCE_STANDALONE_APPLICATION=1",
+					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCE_APP_VERSION=1.0.0",
+					"JUCE_APP_VERSION_HEX=0x10000",
+					"JucePlugin_Build_VST=0",
+					"JucePlugin_Build_VST3=0",
+					"JucePlugin_Build_AU=0",
+					"JucePlugin_Build_AUv3=0",
+					"JucePlugin_Build_AAX=0",
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0",
+					"JucePlugin_Build_LV2=0",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../JuceLibraryCode",
+					"$(HOME)/JUCE/modules",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Info-App.plist;
+				INFOPLIST_PREPROCESS = NO;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JUCE.AndroidScreenSizesTutorialSimpleResize;
+				PRODUCT_NAME = "AndroidScreenSizesTutorialSimpleResize";
+				USE_HEADERMAP = NO;
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
+			};
+			name = Release;
+		};
+		96A827819806035F2D9D1251 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_ARCHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+					"DEBUG=1",
+					"JUCE_DISPLAY_SPLASH_SCREEN=0",
+					"JUCE_USE_DARK_SPLASH_SCREEN=1",
+					"JUCE_PROJUCER_VERSION=0x7000c",
+					"JUCE_MODULE_AVAILABLE_juce_core=1",
+					"JUCE_MODULE_AVAILABLE_juce_data_structures=1",
+					"JUCE_MODULE_AVAILABLE_juce_events=1",
+					"JUCE_MODULE_AVAILABLE_juce_graphics=1",
+					"JUCE_MODULE_AVAILABLE_juce_gui_basics=1",
+					"JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1",
+					"JUCE_STANDALONE_APPLICATION=1",
+					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCE_APP_VERSION=1.0.0",
+					"JUCE_APP_VERSION_HEX=0x10000",
+					"JucePlugin_Build_VST=0",
+					"JucePlugin_Build_VST3=0",
+					"JucePlugin_Build_AU=0",
+					"JucePlugin_Build_AUv3=0",
+					"JucePlugin_Build_AAX=0",
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0",
+					"JucePlugin_Build_LV2=0",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../JuceLibraryCode",
+					"$(HOME)/JUCE/modules",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Info-App.plist;
+				INFOPLIST_PREPROCESS = NO;
+				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JUCE.AndroidScreenSizesTutorialSimpleResize;
+				PRODUCT_NAME = "AndroidScreenSizesTutorialSimpleResize";
+				USE_HEADERMAP = NO;
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C7037CDBDFF306D50C473FAB = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47A95D52E4D35DDE7CFAB175,
+				5D073168B81770CF7976AB3C,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E4B98F153AE5B9E32D272214 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96A827819806035F2D9D1251,
+				8E221821FA717058625DEDAC,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27CB41250B00DEAE047526BF /* Project object */;
+}
