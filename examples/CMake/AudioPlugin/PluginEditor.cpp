@@ -13,7 +13,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 {
-    processorRef.shouldPlaySound = false;
+    AudioPluginAudioProcessor::UpdateAutomatableParameter(processorRef.shouldPlaySound, false);
 }
 
 //==============================================================================
@@ -35,7 +35,7 @@ void AudioPluginAudioProcessorEditor::resized()
 
 void AudioPluginAudioProcessorEditor::mouseUp(const juce::MouseEvent &e)
 {
-    processorRef.shouldPlaySound = !processorRef.shouldPlaySound;
+    AudioPluginAudioProcessor::UpdateAutomatableParameter(processorRef.shouldPlaySound, !processorRef.shouldPlaySound->get());
 }
 
 void AudioPluginAudioProcessorEditor::mouseDown(const juce::MouseEvent &e)

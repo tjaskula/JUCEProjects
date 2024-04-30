@@ -12,6 +12,8 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
                      #endif
                        )
 {
+    shouldPlaySound = new AudioParameterBool("ShouldPlaySoundParam", "shouldPlaySound", false);
+    addParameter(shouldPlaySound);
 }
 
 AudioPluginAudioProcessor::~AudioPluginAudioProcessor()
@@ -156,7 +158,7 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     {
         for( int channel = 0; channel < buffer.getNumChannels(); ++channel )
         {
-            if( shouldPlaySound )
+            if( shouldPlaySound->get() )
             {
                 buffer.setSample(channel, i, r.nextFloat());
             }
@@ -193,6 +195,13 @@ void AudioPluginAudioProcessor::setStateInformation (const void* data, int sizeI
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
     juce::ignoreUnused (data, sizeInBytes);
+}
+
+void AudioPluginAudioProcessor::UpdateAutomatableParameter(juce::RangedAudioParameter * param, float value)
+{
+    param->beginChangeGesture();
+    param->setValueNotifyingHost(value);
+    param->endChangeGesture();
 }
 
 //==============================================================================
