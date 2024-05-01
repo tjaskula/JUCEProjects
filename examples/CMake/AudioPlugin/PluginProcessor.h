@@ -44,9 +44,11 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     AudioParameterBool* shouldPlaySound = nullptr;
+    AudioParameterFloat* bgColor = nullptr;
 
     static void UpdateAutomatableParameter(RangedAudioParameter*, float value);
 private:
+    AudioProcessorValueTreeState apvts;
     Random r;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessor)

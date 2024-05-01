@@ -8,6 +8,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     juce::ignoreUnused (processorRef);
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
+    cachedBgColor = processorRef.bgColor->get();
     setSize (400, 300);
 }
 
@@ -20,7 +21,7 @@ AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 void AudioPluginAudioProcessorEditor::paint (juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId).interpolatedWith(Colours::red, cachedBgColor));
 
     g.setColour (juce::Colours::white);
     g.setFont (15.0f);
@@ -41,4 +42,20 @@ void AudioPluginAudioProcessorEditor::mouseUp(const juce::MouseEvent &e)
 void AudioPluginAudioProcessorEditor::mouseDown(const juce::MouseEvent &e)
 {
     //processorRef.shouldPlaySound = true;
+    lastClickPos = e.getPosition();
+}
+
+void AudioPluginAudioProcessorEditor::mouseDrag(const juce::MouseEvent &e)
+{
+    auto clickPos = e.getPosition();
+
+    DBG( clickPos.toString() );
+
+    auto difY = jmap((double)clickPos.y, 0.0, (double)getHeight(), 1.0, 0.0);
+
+    DBG( "difY: " << difY);
+
+    AudioPluginAudioProcessor::UpdateAutomatableParameter(processorRef.bgColor, difY);
+    cachedBgColor = processorRef.bgColor->get();
+    repaint();
 }

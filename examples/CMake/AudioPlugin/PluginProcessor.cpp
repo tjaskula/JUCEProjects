@@ -10,10 +10,22 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+       apvts(*this, nullptr)
 {
-    shouldPlaySound = new AudioParameterBool("ShouldPlaySoundParam", "shouldPlaySound", false);
-    addParameter(shouldPlaySound);
+    // shouldPlaySound = new AudioParameterBool("ShouldPlaySoundParam", "shouldPlaySound", false);
+    // addParameter(shouldPlaySound);
+    auto shouldPlaySoundParam = std::make_unique<AudioParameterBool>("ShouldPlaySoundParam", "shouldPlaySound", false);
+
+    auto* param = apvts.createAndAddParameter(std::move(shouldPlaySoundParam));
+
+    shouldPlaySound = dynamic_cast<AudioParameterBool*>(param);
+
+    auto bgColorParam = std::make_unique<AudioParameterFloat>("Background color", "background color", 0.f, 1.f, 0.5f);
+    param = apvts.createAndAddParameter(std::move(bgColorParam));
+    bgColor = dynamic_cast<AudioParameterFloat*>(param);
+
+    apvts.state = ValueTree("PFMSynthValueTree");
 }
 
 AudioPluginAudioProcessor::~AudioPluginAudioProcessor()
@@ -187,14 +199,20 @@ void AudioPluginAudioProcessor::getStateInformation (juce::MemoryBlock& destData
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
-    juce::ignoreUnused (destData);
+    // juce::ignoreUnused (destData);
+    DBG(apvts.state.toXmlString());
+    MemoryOutputStream mos(destData, false);
+    apvts.state.writeToStream(mos);
 }
 
 void AudioPluginAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    juce::ignoreUnused (data, sizeInBytes);
+    // juce::ignoreUnused (data, sizeInBytes);
+    MemoryBlock mb(data, static_cast<size_t>(sizeInBytes));
+    MemoryInputStream mis(mb, false);
+    apvts.state.readFromStream(mis);
 }
 
 void AudioPluginAudioProcessor::UpdateAutomatableParameter(juce::RangedAudioParameter * param, float value)
