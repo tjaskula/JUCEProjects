@@ -10,11 +10,18 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     // editor's size to whatever you need it to be.
     cachedBgColor = processorRef.bgColor->get();
     setSize (400, 300);
+
+    startTimerHz(20);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
 {
     AudioPluginAudioProcessor::UpdateAutomatableParameter(processorRef.shouldPlaySound, false);
+}
+
+void AudioPluginAudioProcessorEditor::timerCallback()
+{
+    update();
 }
 
 //==============================================================================
@@ -56,6 +63,11 @@ void AudioPluginAudioProcessorEditor::mouseDrag(const juce::MouseEvent &e)
     DBG( "difY: " << difY);
 
     AudioPluginAudioProcessor::UpdateAutomatableParameter(processorRef.bgColor, difY);
+    update();
+}
+
+void AudioPluginAudioProcessorEditor::update()
+{
     cachedBgColor = processorRef.bgColor->get();
     repaint();
 }
