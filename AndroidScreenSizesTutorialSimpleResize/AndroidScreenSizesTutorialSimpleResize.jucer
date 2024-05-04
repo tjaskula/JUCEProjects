@@ -7,8 +7,8 @@
   <MAINGROUP id="xq4bp5" name="AndroidScreenSizesTutorialSimpleResize">
     <GROUP id="{A4E629A0-8D2B-A129-017E-25BBF2645C1F}" name="Source">
       <FILE id="g30Ybb" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <FILE id="Ik2EfB" name="AndroidScreenSizesTutorialSimpleResize.h" compile="0"
-            resource="0" file="Source/AndroidScreenSizesTutorialSimpleResize.h"/>
+      <FILE id="Ik2EfB" name="AndroidScreenSizesTutorialLayoutsSize.h" compile="0"
+            resource="0" file="Source/AndroidScreenSizesTutorialLayoutsSize.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

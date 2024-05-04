@@ -1377,7 +1377,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\AndroidScreenSizesTutorialSimpleResize.h"/>
+    <ClInclude Include="..\..\Source\AndroidScreenSizesTutorialLayoutsSize.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_core\containers\juce_AbstractFifo.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_core\containers\juce_Array.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_core\containers\juce_ArrayAllocationBase.h"/>

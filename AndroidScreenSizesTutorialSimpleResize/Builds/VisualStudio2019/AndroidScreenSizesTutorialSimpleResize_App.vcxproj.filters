@@ -1557,7 +1557,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\AndroidScreenSizesTutorialSimpleResize.h">
+    <ClInclude Include="..\..\Source\AndroidScreenSizesTutorialLayoutsSize.h">
       <Filter>AndroidScreenSizesTutorialSimpleResize\Source</Filter>
     </ClInclude>
     <ClInclude Include="C:\JUCE\modules\juce_core\containers\juce_AbstractFifo.h">

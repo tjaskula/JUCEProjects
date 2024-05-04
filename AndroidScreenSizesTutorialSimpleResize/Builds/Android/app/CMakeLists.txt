@@ -33,7 +33,7 @@ add_library( ${BINARY_NAME}
     SHARED
 
     "../../../Source/Main.cpp"
-    "../../../Source/AndroidScreenSizesTutorialSimpleResize.h"
+    "../../../Source/AndroidScreenSizesTutorialLayoutsSize.h"
     "../../../../../../JUCE/modules/juce_core/containers/juce_AbstractFifo.cpp"
     "../../../../../../JUCE/modules/juce_core/containers/juce_AbstractFifo.h"
     "../../../../../../JUCE/modules/juce_core/containers/juce_Array.h"
@@ -948,7 +948,7 @@ add_library( ${BINARY_NAME}
 )
 
 set_source_files_properties(
-    "../../../Source/AndroidScreenSizesTutorialSimpleResize.h"
+    "../../../Source/AndroidScreenSizesTutorialLayoutsSize.h"
     "../../../../../../JUCE/modules/juce_core/containers/juce_AbstractFifo.cpp"
     "../../../../../../JUCE/modules/juce_core/containers/juce_AbstractFifo.h"
     "../../../../../../JUCE/modules/juce_core/containers/juce_Array.h"

@@ -41,7 +41,7 @@
 		8F5957F511714C5E11949D4E /* include_juce_gui_basics.mm */ /* include_juce_gui_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_basics.mm; path = ../../JuceLibraryCode/include_juce_gui_basics.mm; sourceTree = SOURCE_ROOT; };
 		AB24865E9B56A12470869079 /* Info-App.plist */ /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-App.plist"; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
 		C900F020D38A9FAFAECBBC79 /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
-		DDE99CBD6629BDE7B682FEE7 /* AndroidScreenSizesTutorialSimpleResize.h */ /* AndroidScreenSizesTutorialSimpleResize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AndroidScreenSizesTutorialSimpleResize.h; path = ../../Source/AndroidScreenSizesTutorialSimpleResize.h; sourceTree = SOURCE_ROOT; };
+		D4F263702FF5430155EF4611 /* AndroidScreenSizesTutorialLayoutsSize.h */ /* AndroidScreenSizesTutorialLayoutsSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AndroidScreenSizesTutorialLayoutsSize.h; path = ../../Source/AndroidScreenSizesTutorialLayoutsSize.h; sourceTree = SOURCE_ROOT; };
 		E47061BA6BA84346D4EA3576 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
 		EAF4B9D0CCE2819FAE26309D /* MetalKit.framework */ /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		F11715F3855B6C361F874028 /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				20E700A7DF87F2117F6DCD17,
-				DDE99CBD6629BDE7B682FEE7,
+				D4F263702FF5430155EF4611,
 			);
 			name = Source;
 			sourceTree = "<group>";
