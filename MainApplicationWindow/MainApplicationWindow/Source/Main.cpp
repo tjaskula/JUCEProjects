@@ -56,6 +56,8 @@ public:
         {
             centreWithSize (300, 200);
             setVisible (true);
+            setResizable (true, true);
+            setUsingNativeTitleBar (true);
         }
 
         void closeButtonPressed() override
