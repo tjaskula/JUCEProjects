@@ -6,14 +6,14 @@
   ==============================================================================
 */
 
-#include <JuceHeader.h>
+#include "MainComponent.h"
 
 //==============================================================================
-class MainApplicationWindowApplication  : public juce::JUCEApplication
+class MainComponentTutorialApplication  : public juce::JUCEApplication
 {
 public:
     //==============================================================================
-    MainApplicationWindowApplication() {}
+    MainComponentTutorialApplication() {}
 
     const juce::String getApplicationName() override       { return ProjectInfo::projectName; }
     const juce::String getApplicationVersion() override    { return ProjectInfo::versionString; }
@@ -54,10 +54,11 @@ public:
                                                           juce::Colours::lightgrey,
                                                           DocumentWindow::allButtons)
         {
-            centreWithSize (300, 200);
-            setVisible (true);
-            setResizable (true, true);
             setUsingNativeTitleBar (true);
+            setContentOwned (new MainComponent(), true);
+            centreWithSize (getWidth(), getHeight());
+            setResizable (true, true);
+            setVisible (true);
         }
 
         void closeButtonPressed() override
@@ -74,4 +75,4 @@ private:
 
 //==============================================================================
 // This macro generates the main() routine that launches the app.
-START_JUCE_APPLICATION (MainApplicationWindowApplication)
+START_JUCE_APPLICATION (MainComponentTutorialApplication)
