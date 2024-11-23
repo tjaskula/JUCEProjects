@@ -25,6 +25,10 @@ public:
 private:
     //==============================================================================
     // Your private member variables go here...
+    juce::Slider dial1;
+    juce::Slider dial2;
+    juce::TextButton button1;
+    juce::TextButton button2;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
