@@ -6,7 +6,7 @@
   ==============================================================================
 */
 
-#include "MainComponent.h"
+#include "MainContentComponent.h"
 
 //==============================================================================
 class MainComponentTutorialApplication  : public juce::JUCEApplication
@@ -23,7 +23,7 @@ public:
     void initialise (const juce::String& commandLine) override
     {
         // Add your application's initialisation code here..
-        mainWindow.reset (new MainWindow (getApplicationName()));
+        mainWindow.reset (new MainWindow (getApplicationName(), new MainContentComponent, *this));
     }
 
     void shutdown() override
@@ -50,23 +50,31 @@ public:
     class MainWindow    : public juce::DocumentWindow
     {
     public:
-        MainWindow (juce::String name)  : DocumentWindow (name,
-                                                          juce::Colours::lightgrey,
-                                                          DocumentWindow::allButtons)
+        MainWindow (const juce::String& name, juce::Component* c, JUCEApplication& a)
+                : DocumentWindow (name, juce::Desktop::getInstance().getDefaultLookAndFeel()
+                                          .findColour (ResizableWindow::backgroundColourId),
+                                  juce::DocumentWindow::allButtons),
+                  app (a)
         {
             setUsingNativeTitleBar (true);
-            setContentOwned (new MainComponent(), true);
+            setContentOwned (c, true);
+
+            setResizable (true, false);
+            setResizeLimits (300, 250, 10000, 10000);
             centreWithSize (getWidth(), getHeight());
-            setResizable (true, true);
+
             setVisible (true);
         }
 
         void closeButtonPressed() override
         {
-            juce::JUCEApplication::getInstance()->systemRequestedQuit();
+            app.systemRequestedQuit();
         }
 
     private:
+        JUCEApplication& app;
+
+        //==============================================================================
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
     };
 private:

@@ -11,12 +11,12 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainComponent final : public juce::Component
+class MainContentComponent final : public juce::Component
 {
 public:
     //==============================================================================
-    MainComponent();
-    ~MainComponent() override;
+    MainContentComponent();
+    ~MainContentComponent() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
@@ -26,5 +26,5 @@ private:
     //==============================================================================
     // Your private member variables go here...
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
