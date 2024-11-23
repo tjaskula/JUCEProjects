@@ -5,6 +5,9 @@
 // have called `juce_generate_juce_header(<thisTarget>)` in your CMakeLists.txt,
 // you could `#include <JuceHeader.h>` here instead, to make all your module headers visible.
 #include <JuceHeader.h>
+#include "FloorComponent.h"
+#include "HouseComponent.h"
+#include "SunComponent.h"
 
 //==============================================================================
 /*
@@ -25,6 +28,10 @@ public:
 private:
     //==============================================================================
     // Your private member variables go here...
+    FloorComponent floor;
+    HouseComponent house;
+    HouseComponent smallHouse;
+    SunComponent sun;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SceneComponent)
 };
