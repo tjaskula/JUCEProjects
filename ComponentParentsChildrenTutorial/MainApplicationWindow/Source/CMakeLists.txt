@@ -61,7 +61,19 @@ target_sources(GuiAppExample
     PRIVATE
         Main.cpp
         MainContentComponent.cpp
-        MainContentComponent.h)
+        MainContentComponent.h
+        FloorComponent.cpp
+        FloorComponent.h
+        HouseComponent.cpp
+        HouseComponent.h
+        RoofComponent.cpp
+        RoofComponent.h
+        SceneComponent.cpp
+        SceneComponent.h
+        SunComponent.cpp
+        SunComponent.h
+        WallComponent.cpp
+        WallComponent.h)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use

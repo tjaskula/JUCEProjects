@@ -5,19 +5,18 @@
 // have called `juce_generate_juce_header(<thisTarget>)` in your CMakeLists.txt,
 // you could `#include <JuceHeader.h>` here instead, to make all your module headers visible.
 #include <JuceHeader.h>
-#include "SceneComponent.h"
 
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainContentComponent final : public juce::Component
+class SunComponent final : public juce::Component
 {
 public:
     //==============================================================================
-    MainContentComponent();
-    ~MainContentComponent() override;
+    SunComponent();
+    ~SunComponent() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
@@ -26,7 +25,6 @@ public:
 private:
     //==============================================================================
     // Your private member variables go here...
-    SceneComponent scene;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SunComponent)
 };
