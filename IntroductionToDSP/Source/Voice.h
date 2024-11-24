@@ -11,6 +11,10 @@ public:
     {
         auto& masterGain = processorChain.get<masterGainIndex>();
         masterGain.setGainLinear (0.7f);
+
+        auto& filter = processorChain.get<filterIndex>();
+        filter.setCutoffFrequencyHz (1000.0f);
+        filter.setResonance (0.7f);
     }
 
     //==============================================================================
@@ -74,10 +78,12 @@ private:
     {
         osc1Index,
         osc2Index,
+        filterIndex,
         masterGainIndex
     };
 
-    juce::dsp::ProcessorChain<CustomOscillator<float>, CustomOscillator<float>, juce::dsp::Gain<float>> processorChain;
+    juce::dsp::ProcessorChain<CustomOscillator<float>, CustomOscillator<float>,
+            juce::dsp::LadderFilter<float>, juce::dsp::Gain<float>> processorChain;
 
     static constexpr size_t lfoUpdateRate = 100;
 };
