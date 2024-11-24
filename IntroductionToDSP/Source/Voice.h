@@ -15,6 +15,9 @@ public:
         auto& filter = processorChain.get<filterIndex>();
         filter.setCutoffFrequencyHz (1000.0f);
         filter.setResonance (0.7f);
+
+        lfo.initialise ([] (float x) { return std::sin(x); }, 128);
+        lfo.setFrequency (3.0f);
     }
 
     //==============================================================================
@@ -22,6 +25,8 @@ public:
     {
         tempBlock = juce::dsp::AudioBlock<float> (heapBlock, spec.numChannels, spec.maximumBlockSize);
         processorChain.prepare (spec);
+
+        lfo.prepare ({ spec.sampleRate / lfoUpdateRate, spec.maximumBlockSize, spec.numChannels });
     }
 
     //==============================================================================
@@ -59,10 +64,28 @@ public:
     //==============================================================================
     void renderNextBlock (juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override
     {
-        auto block = tempBlock.getSubBlock (0, (size_t) numSamples);
-        block.clear();
-        juce::dsp::ProcessContextReplacing<float> context (block);
-        processorChain.process (context);
+        auto output = tempBlock.getSubBlock (0, (size_t) numSamples);
+        output.clear();
+
+        for (size_t pos = 0; pos < (size_t) numSamples;)
+        {
+            auto max = juce::jmin ((size_t) numSamples - pos, lfoUpdateCounter);
+            auto block = output.getSubBlock (pos, max);
+
+            juce::dsp::ProcessContextReplacing<float> context (block);
+            processorChain.process (context);
+
+            pos += max;
+            lfoUpdateCounter -= max;
+
+            if (lfoUpdateCounter == 0)
+            {
+                lfoUpdateCounter = lfoUpdateRate;
+                auto lfoOut = lfo.processSample (0.0f);                                 // [5]
+                auto curoffFreqHz = juce::jmap (lfoOut, -1.0f, 1.0f, 100.0f, 2000.0f);  // [6]
+                processorChain.get<filterIndex>().setCutoffFrequencyHz (curoffFreqHz);  // [7]
+            }
+        }
 
         juce::dsp::AudioBlock<float> (outputBuffer)
                 .getSubBlock ((size_t) startSample, (size_t) numSamples)
@@ -86,4 +109,6 @@ private:
             juce::dsp::LadderFilter<float>, juce::dsp::Gain<float>> processorChain;
 
     static constexpr size_t lfoUpdateRate = 100;
+    size_t lfoUpdateCounter = lfoUpdateRate;
+    juce::dsp::Oscillator<float> lfo;
 };
