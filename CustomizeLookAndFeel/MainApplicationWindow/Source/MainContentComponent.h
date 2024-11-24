@@ -5,6 +5,7 @@
 // have called `juce_generate_juce_header(<thisTarget>)` in your CMakeLists.txt,
 // you could `#include <JuceHeader.h>` here instead, to make all your module headers visible.
 #include <JuceHeader.h>
+#include "OtherLookAndFeel.h"
 
 //==============================================================================
 /*
@@ -25,6 +26,8 @@ public:
 private:
     //==============================================================================
     // Your private member variables go here...
+    // juce::LookAndFeel_V4 otherLookAndFeel;
+    OtherLookAndFeel otherLookAndFeel; // [2]
     juce::Slider dial1;
     juce::Slider dial2;
     juce::TextButton button1;

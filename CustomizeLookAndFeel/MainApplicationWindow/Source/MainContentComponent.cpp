@@ -3,6 +3,7 @@
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
+    setLookAndFeel (&otherLookAndFeel); // customized look and feel
     dial1.setSliderStyle (juce::Slider::Rotary);
     dial1.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
     addAndMakeVisible (dial1);
@@ -10,6 +11,11 @@ MainContentComponent::MainContentComponent()
     dial2.setSliderStyle (juce::Slider::Rotary);
     dial2.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
     addAndMakeVisible (dial2);
+
+    // getLookAndFeel().setColour (juce::Slider::thumbColourId, juce::Colours::red);
+    // or
+    //otherLookAndFeel.setColour (juce::Slider::thumbColourId, juce::Colours::red);
+    // dial1.setLookAndFeel (&otherLookAndFeel);
 
     button1.setButtonText ("Button 1");
     addAndMakeVisible (button1);
@@ -22,7 +28,7 @@ MainContentComponent::MainContentComponent()
 
 MainContentComponent::~MainContentComponent()
 {
-
+    setLookAndFeel (nullptr);
 }
 
 //==============================================================================
