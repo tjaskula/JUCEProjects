@@ -24,6 +24,8 @@ public:
 
         for (auto* v : voices)
             dynamic_cast<Voice*> (v)->prepare (spec);
+
+        fxChain.prepare (spec);
     }
 
 private:
@@ -31,5 +33,17 @@ private:
     void renderNextSubBlock (juce::AudioBuffer<float>& outputAudio, int startSample, int numSamples) override
     {
         MPESynthesiser::renderNextSubBlock (outputAudio, startSample, numSamples);
+
+        auto block = juce::dsp::AudioBlock<float> (outputAudio);
+        auto blockToUse = block.getSubBlock ((size_t) startSample, (size_t) numSamples);
+        auto contextToUse = juce::dsp::ProcessContextReplacing<float> (blockToUse);
+        fxChain.process (contextToUse);
     }
+
+    enum
+    {
+        reverbIndex
+    };
+
+    juce::dsp::ProcessorChain<juce::dsp::Reverb> fxChain;
 };
