@@ -11,16 +11,7 @@
 
 //==============================================================================
 DSPTutorialAudioProcessor::DSPTutorialAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                     #endif
-                       )
-#endif
+        : AudioProcessor (BusesProperties().withOutput ("Output", juce::AudioChannelSet::stereo(), true))
 {
 }
 
@@ -36,29 +27,17 @@ const juce::String DSPTutorialAudioProcessor::getName() const
 
 bool DSPTutorialAudioProcessor::acceptsMidi() const
 {
-   #if JucePlugin_WantsMidiInput
     return true;
-   #else
-    return false;
-   #endif
 }
 
 bool DSPTutorialAudioProcessor::producesMidi() const
 {
-   #if JucePlugin_ProducesMidiOutput
-    return true;
-   #else
-    return false;
-   #endif
+   return false;
 }
 
 bool DSPTutorialAudioProcessor::isMidiEffect() const
 {
-   #if JucePlugin_IsMidiEffect
-    return true;
-   #else
     return false;
-   #endif
 }
 
 double DSPTutorialAudioProcessor::getTailLengthSeconds() const
@@ -95,6 +74,8 @@ void DSPTutorialAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    audioEngine.prepare ({ sampleRate, (juce::uint32) samplesPerBlock, 2 });
+    midiMessageCollector.reset (sampleRate);
 }
 
 void DSPTutorialAudioProcessor::releaseResources()
@@ -103,12 +84,8 @@ void DSPTutorialAudioProcessor::releaseResources()
     // spare memory, etc.
 }
 
-#ifndef JucePlugin_PreferredChannelConfigurations
 bool DSPTutorialAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
-  #if JucePlugin_IsMidiEffect
-//    juce::ignoreUnused (layouts);
-//    return true;
 
     // This is the place where you check if the layout is supported.
     // In this template code we only support mono or stereo.
@@ -117,28 +94,21 @@ bool DSPTutorialAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
         return false;
 
     return true;
-  #else
-    // This is the place where you check if the layout is supported.
-    // In this template code we only support mono or stereo.
-    // Some plugin hosts, such as certain GarageBand versions, will only
-    // load plugins that support stereo bus layouts.
-    if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono()
-     && layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
-        return false;
-
-    // This checks if the input layout matches the output layout
-   #if ! JucePlugin_IsSynth
-    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
-        return false;
-   #endif
-
-    return true;
-  #endif
 }
-#endif
 
 void DSPTutorialAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
+    juce::ScopedNoDenormals noDenormals;
+    auto totalNumInputChannels  = getTotalNumInputChannels();
+    auto totalNumOutputChannels = getTotalNumOutputChannels();
+
+    midiMessageCollector.removeNextBlockOfMessages (midiMessages, buffer.getNumSamples());
+
+    for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+        buffer.clear (i, 0, buffer.getNumSamples());
+
+    audioEngine.renderNextBlock (buffer, midiMessages, 0, buffer.getNumSamples());
+    scopeDataCollector.process (buffer.getReadPointer (0), (size_t) buffer.getNumSamples());
 }
 
 //==============================================================================

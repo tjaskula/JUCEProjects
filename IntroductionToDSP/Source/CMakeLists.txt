@@ -70,7 +70,15 @@ juce_generate_juce_header(DSPIntroductionTutorial)
 target_sources(DSPIntroductionTutorial
     PRIVATE
         PluginEditor.cpp
-        PluginProcessor.cpp)
+        PluginEditor.h
+        PluginProcessor.cpp
+        PluginProcessor.h
+        AudioBufferQueue.h
+        ScopeDataCollector.h
+        ScopeComponent.h
+        AudioEngine.h
+        Voice.h
+        CustomOscillator.h)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use
@@ -104,7 +112,15 @@ target_compile_definitions(DSPIntroductionTutorial
 target_link_libraries(DSPIntroductionTutorial
     PRIVATE
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
+        juce::juce_audio_plugin_client
         juce::juce_audio_utils
+        juce::juce_dsp
+        juce::juce_audio_basics
+        juce::juce_core
+        juce::juce_events
+        juce::juce_graphics
+        juce::juce_gui_basics
+        juce::juce_gui_extra
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
