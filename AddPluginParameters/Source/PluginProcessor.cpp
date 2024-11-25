@@ -5,13 +5,19 @@
 
   ==============================================================================
 */
+#pragma once
 
+#include <JuceHeader.h>
 #include "PluginProcessor.h"
 
 //==============================================================================
 TutorialProcessor::TutorialProcessor()
-        : AudioProcessor (BusesProperties().withOutput ("Output", juce::AudioChannelSet::stereo(), true))
 {
+    addParameter (gain = new juce::AudioParameterFloat ("gain", // parameterID
+                                                        "Gain", // parameter name
+                                                        0.0f,   // minimum value
+                                                        1.0f,   // maximum value
+                                                        0.5f)); // default value
 }
 
 TutorialProcessor::~TutorialProcessor()
@@ -86,16 +92,11 @@ bool TutorialProcessor::isBusesLayoutSupported (const BusesLayout& layouts) cons
 
     // This is the place where you check if the layout is supported.
     // In this template code we only support mono or stereo.
-    if (layouts.getMainOutputChannelSet() != juce::AudioChannelSet::mono()
-        && layouts.getMainOutputChannelSet() != juce::AudioChannelSet::stereo())
-        return false;
-
-    return true;
 }
 
 void TutorialProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
-
+    buffer.applyGain (*gain);
 }
 
 //==============================================================================
@@ -106,6 +107,7 @@ bool TutorialProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* TutorialProcessor::createEditor()
 {
+    return new juce::GenericAudioProcessorEditor (*this);
 }
 
 //==============================================================================
@@ -114,12 +116,14 @@ void TutorialProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    juce::MemoryOutputStream (destData, true).writeFloat (*gain);
 }
 
 void TutorialProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    *gain = juce::MemoryInputStream (data, static_cast<size_t> (sizeInBytes), false).readFloat();
 }
 
 //==============================================================================
