@@ -78,7 +78,9 @@ target_sources(DSPIntroductionTutorial
         ScopeComponent.h
         AudioEngine.h
         Voice.h
-        CustomOscillator.h)
+        CustomOscillator.h
+        Distortion.h
+        CabSimulator.h)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use

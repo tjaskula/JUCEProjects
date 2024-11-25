@@ -2,6 +2,8 @@
 
 #include <JuceHeader.h>
 #include "Voice.h"
+#include "Distortion.h"
+#include "CabSimulator.h"
 
 class AudioEngine  : public juce::MPESynthesiser
 {
@@ -42,8 +44,9 @@ private:
 
     enum
     {
+        distortionIndex,
         reverbIndex
     };
 
-    juce::dsp::ProcessorChain<juce::dsp::Reverb> fxChain;
+    juce::dsp::ProcessorChain<Distortion<float>, CabSimulator<float>, juce::dsp::Reverb> fxChain;
 };
