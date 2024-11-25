@@ -18,6 +18,7 @@ TutorialProcessor::TutorialProcessor()
                                                         0.0f,   // minimum value
                                                         1.0f,   // maximum value
                                                         0.5f)); // default value
+    addParameter (invertPhase = new juce::AudioParameterBool  ("invertPhase", "Invert Phase", false));
 }
 
 TutorialProcessor::~TutorialProcessor()
@@ -79,6 +80,8 @@ void TutorialProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    auto phase = *invertPhase ? -1.0f : 1.0f;
+    previousGain = *gain * phase;
 }
 
 void TutorialProcessor::releaseResources()
@@ -96,7 +99,18 @@ bool TutorialProcessor::isBusesLayoutSupported (const BusesLayout& layouts) cons
 
 void TutorialProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
-    buffer.applyGain (*gain);
+    auto phase = *invertPhase ? -1.0f : 1.0f;
+    auto currentGain = *gain * phase;
+
+    if (juce::approximatelyEqual (currentGain, previousGain))
+    {
+        buffer.applyGain (currentGain);
+    }
+    else
+    {
+        buffer.applyGainRamp (0, buffer.getNumSamples(), previousGain, currentGain);
+        previousGain = currentGain;
+    }
 }
 
 //==============================================================================
@@ -116,14 +130,28 @@ void TutorialProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
-    juce::MemoryOutputStream (destData, true).writeFloat (*gain);
+    // juce::MemoryOutputStream (destData, true).writeFloat (*gain); // Tutorial 01
+    std::unique_ptr<juce::XmlElement> xml (new juce::XmlElement ("ParamTutorial"));
+    xml->setAttribute ("gain", (double) *gain);
+    xml->setAttribute ("invertPhase", *invertPhase);
+    copyXmlToBinary (*xml, destData);
 }
 
 void TutorialProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    *gain = juce::MemoryInputStream (data, static_cast<size_t> (sizeInBytes), false).readFloat();
+    //*gain = juce::MemoryInputStream (data, static_cast<size_t> (sizeInBytes), false).readFloat(); // Tutorial 01
+    std::unique_ptr<juce::XmlElement> xmlState (getXmlFromBinary (data, sizeInBytes));
+
+    if (xmlState.get() != nullptr)
+    {
+        if (xmlState->hasTagName ("ParamTutorial"))
+        {
+            *gain = (float) xmlState->getDoubleAttribute("gain", 1.0);
+            *invertPhase = xmlState->getBoolAttribute("invertPhase", false);
+        }
+    }
 }
 
 //==============================================================================
