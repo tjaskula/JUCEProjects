@@ -12,13 +12,20 @@
 
 //==============================================================================
 TutorialProcessor::TutorialProcessor()
+        : parameters (*this, nullptr, juce::Identifier ("APVTSTutorial"),
+                      {
+                              std::make_unique<juce::AudioParameterFloat> ("gain",            // parameterID
+                                                                           "Gain",            // parameter name
+                                                                           0.0f,              // minimum value
+                                                                           1.0f,              // maximum value
+                                                                           0.5f),             // default value
+                              std::make_unique<juce::AudioParameterBool> ("invertPhase",      // parameterID
+                                                                          "Invert Phase",     // parameter name
+                                                                          false)              // default value
+                      })
 {
-    addParameter (gain = new juce::AudioParameterFloat ("gain", // parameterID
-                                                        "Gain", // parameter name
-                                                        0.0f,   // minimum value
-                                                        1.0f,   // maximum value
-                                                        0.5f)); // default value
-    addParameter (invertPhase = new juce::AudioParameterBool  ("invertPhase", "Invert Phase", false));
+    phaseParameter = parameters.getRawParameterValue ("invertPhase");
+    gainParameter  = parameters.getRawParameterValue ("gain");
 }
 
 TutorialProcessor::~TutorialProcessor()
@@ -80,8 +87,8 @@ void TutorialProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    auto phase = *invertPhase ? -1.0f : 1.0f;
-    previousGain = *gain * phase;
+    auto phase = *phaseParameter < 0.5f ? 1.0f : -1.0f;
+    previousGain = *gainParameter * phase;
 }
 
 void TutorialProcessor::releaseResources()
@@ -99,8 +106,8 @@ bool TutorialProcessor::isBusesLayoutSupported (const BusesLayout& layouts) cons
 
 void TutorialProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
-    auto phase = *invertPhase ? -1.0f : 1.0f;
-    auto currentGain = *gain * phase;
+    auto phase = *phaseParameter < 0.5f ? 1.0f : -1.0f;
+    auto currentGain = *gainParameter * phase;
 
     if (juce::approximatelyEqual (currentGain, previousGain))
     {
@@ -130,10 +137,8 @@ void TutorialProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
-    // juce::MemoryOutputStream (destData, true).writeFloat (*gain); // Tutorial 01
-    std::unique_ptr<juce::XmlElement> xml (new juce::XmlElement ("ParamTutorial"));
-    xml->setAttribute ("gain", (double) *gain);
-    xml->setAttribute ("invertPhase", *invertPhase);
+    auto state = parameters.copyState();
+    std::unique_ptr<juce::XmlElement> xml (state.createXml());
     copyXmlToBinary (*xml, destData);
 }
 
@@ -141,17 +146,11 @@ void TutorialProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    //*gain = juce::MemoryInputStream (data, static_cast<size_t> (sizeInBytes), false).readFloat(); // Tutorial 01
     std::unique_ptr<juce::XmlElement> xmlState (getXmlFromBinary (data, sizeInBytes));
 
     if (xmlState.get() != nullptr)
-    {
-        if (xmlState->hasTagName ("ParamTutorial"))
-        {
-            *gain = (float) xmlState->getDoubleAttribute("gain", 1.0);
-            *invertPhase = xmlState->getBoolAttribute("invertPhase", false);
-        }
-    }
+        if (xmlState->hasTagName (parameters.state.getType()))
+            parameters.replaceState (juce::ValueTree::fromXml (*xmlState));
 }
 
 //==============================================================================
