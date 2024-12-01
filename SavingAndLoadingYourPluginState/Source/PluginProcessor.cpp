@@ -9,6 +9,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "GenericEditor.h"
 
 //==============================================================================
 TutorialProcessor::TutorialProcessor()
@@ -128,7 +129,7 @@ bool TutorialProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* TutorialProcessor::createEditor()
 {
-    return new juce::GenericAudioProcessorEditor (*this);
+    return new GenericEditor (*this, parameters);
 }
 
 //==============================================================================

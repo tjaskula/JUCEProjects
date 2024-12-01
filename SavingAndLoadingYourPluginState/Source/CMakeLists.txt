@@ -70,7 +70,9 @@ juce_generate_juce_header(AudioParameterTutorial)
 target_sources(AudioParameterTutorial
     PRIVATE
         PluginProcessor.cpp
-        PluginProcessor.h)
+        PluginProcessor.h
+        GenericEditor.cpp
+        GenericEditor.h)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use
