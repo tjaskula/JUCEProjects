@@ -27,9 +27,9 @@ MainContentComponent::MainContentComponent()
     volumeSlider.setRange (0, 127, 1);
     volumeSlider.onValueChange = [this]
     {
-        auto message = juce::MidiMessage::controllerEvent (midiChannel, 7, (int) volumeSlider.getValue());
+        auto message = juce::MidiMessage::controllerEvent (10, 7, (int) volumeSlider.getValue());
         message.setTimeStamp (juce::Time::getMillisecondCounterHiRes() * 0.001 - startTime);
-        addMessageToList (message);
+        addMessageToBuffer (message);
     };
 
     addAndMakeVisible (midiMessagesBox);
@@ -44,6 +44,7 @@ MainContentComponent::MainContentComponent()
     midiMessagesBox.setColour (juce::TextEditor::shadowColourId, juce::Colour (0x16000000));
 
     setSize (800, 300);
+    startTimer (1);
 }
 
 MainContentComponent::~MainContentComponent()

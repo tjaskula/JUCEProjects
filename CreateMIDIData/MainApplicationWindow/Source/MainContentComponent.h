@@ -9,7 +9,8 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainContentComponent final : public juce::Component
+class MainContentComponent final : public juce::Component,
+                                   private juce::Timer
 {
 public:
     //==============================================================================
@@ -50,9 +51,32 @@ private:
 
     void setNoteNumber (int noteNumber)
     {
-        auto message = juce::MidiMessage::noteOn (midiChannel, noteNumber, (juce::uint8) 100);
+        auto message = juce::MidiMessage::noteOn (1, noteNumber, (juce::uint8) 100);
         message.setTimeStamp (juce::Time::getMillisecondCounterHiRes() * 0.001 - startTime);
-        addMessageToList (message);
+        addMessageToBuffer (message);
+
+        auto messageOff = juce::MidiMessage::noteOff (message.getChannel(), message.getNoteNumber());
+        messageOff.setTimeStamp (message.getTimeStamp() + 0.1);
+        addMessageToBuffer (messageOff);
+    }
+
+    void timerCallback() override
+    {
+        auto currentTime = juce::Time::getMillisecondCounterHiRes() * 0.001 - startTime;
+        auto currentSampleNumber = (int) (currentTime * sampleRate);     // [4]
+
+        for (const auto metadata : midiBuffer)                           // [5]
+        {
+            if (metadata.samplePosition > currentSampleNumber)           // [6]
+                break;
+
+            auto message = metadata.getMessage();
+            message.setTimeStamp (metadata.samplePosition / sampleRate); // [7]
+            addMessageToList (message);
+        }
+
+        midiBuffer.clear (previousSampleNumber, currentSampleNumber - previousSampleNumber); // [8]
+        previousSampleNumber = currentSampleNumber;                                          // [9]
     }
 
     void logMessage (const juce::String& m)
@@ -79,6 +103,13 @@ private:
         logMessage (timecode + "  -  " + getMidiMessageDescription (message));
     }
 
+    void addMessageToBuffer (const juce::MidiMessage& message)
+    {
+        auto timestamp = message.getTimeStamp();
+        auto sampleNumber =  (int) (timestamp * sampleRate);
+        midiBuffer.addEvent (message, sampleNumber);
+    }
+
     //==============================================================================
     juce::TextButton bassDrumButton;
     juce::TextButton snareDrumButton;
@@ -92,6 +123,10 @@ private:
 
     int midiChannel = 10;
     double startTime;
+
+    juce::MidiBuffer midiBuffer;        // [1]
+    double sampleRate = 44100.0;        // [2]
+    int previousSampleNumber = 0;       // [3]
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
